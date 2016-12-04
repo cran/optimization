@@ -1,0 +1,13 @@
+d68b489a1f990360879008d1c76e7a48 *DESCRIPTION
+c80297b6ddfc6eca817020a3957ab107 *NAMESPACE
+44a4db56d1aa4a7606f6758f44feded7 *R/RcppExports.R
+c498675e7eb0e525d05c72325b9349a5 *R/optim_nm.R
+d46c12dfb1594af9bfae7351c409464c *R/optim_sa.R
+2caeee0b0e244f1c4249cb5c51f27a09 *R/plot.optim_nmsa.R
+eb411b8ec2261157160a294955ec268a *build/partial.rdb
+be8a863510d3e13d83fea31957887442 *man/optim_nm.Rd
+b986d27404b87358db149bca98e5aac5 *man/optim_sa.Rd
+6ef53376d2ffc29ae5aab8059056668a *man/optimization-package.Rd
+2664edf4797b82a4c7db497c9e20acac *man/plot.optim_nmsa.Rd
+9d8f4bd233a6f4ea5b203b728351bd64 *src/RcppExports.cpp
+ad1a5a1be73d908ba9e851e02e90f3fc *src/optim_sa.cpp
