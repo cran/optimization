@@ -56,7 +56,7 @@
   The Nelder-Mead method is a comparatively simple heuristic optimization algorithm. It is, However, useful for relatively simple optimization problems without many local minima and low dimensions(n < 10). Nevertheless, the speed and accuracy are rather useful for simple problems. Moreover, the Nelder-Mead is able to optimize functions without derivatives. The handling of the optimization function is quite easy, because there are only few parameters to adjust.
   }
   \value{
-  The output is a optim_nmsa object with following entries:
+  The output is a nmsa_optim object with following entries:
   \describe{
     \item{\code{par}}{
       Function parameters after optimization.

@@ -8,13 +8,11 @@
 \packageDescription{optimization}
 }
 \details{
-\tabular{ll}{
-Package: \tab optimization \cr
-Type: \tab Package \cr
-Version: \tab 1.0-1 \cr
-Date: \tab 2016-11-28 \cr
-License: \tab GPL-2 \cr
-}
+Package: optimization
+Type:    Package
+Version: 1.0-1
+Date:    2016-11-28
+License: GPL-2
 }
 \author{
 \packageAuthor{optimization}

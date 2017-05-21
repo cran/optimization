@@ -1,10 +1,10 @@
 \name{optim_sa}
 \alias{optim_sa}
 \title{
-Multi-Purpose Optimization with Simulated Annealing
+Flexible Optimization with Simulated Annealing
 }
 \description{
-Random search optimization method with systematic component that searches for the global optimum. The loss function is allowed to be non-linear, non-differentiable and multimodal. Undefined responses are allowed as well.
+Random search optimization method with systematic component that searches the global optimum. The loss function is allowed to be non-linear, non-differentiable and multimodal. Undefined responses are allowed as well.
 }
 \usage{
 optim_sa(fun, start, maximization = FALSE, trace = FALSE,
@@ -13,7 +13,7 @@ optim_sa(fun, start, maximization = FALSE, trace = FALSE,
 
 \arguments{
   \item{fun}{
-  Loss function to be optimized. It must return a scalar value. The variables must be assigned as a vector. See \code{details}.
+  Loss function to be optimized. It must return a scalar value. The variables must be assigned as a vector. See 'details'.
   }
   \item{start}{
   Vector of initial values for the function variables. Must be of same length as the variables vector of the loss function. The response of the initial variables combination must be defined (NA or NaN responses are not allowed).
@@ -25,10 +25,10 @@ optim_sa(fun, start, maximization = FALSE, trace = FALSE,
   Logical. If TRUE, interim results are stored. Necessary for the plot function. Default is FALSE.
   }
   \item{lower}{
-  Numeric ector with lower boundaries for the function variables. Must be of same length as the variables vector of the function.
+  Vector of lower boundaries for the function variables. Must be of same length as the variables vector of the function.
   }
   \item{upper}{
-  Numeric vector with upper boundaries for the function variables. Must be of same length as the variables vector of the function.
+  Vector of upper boundaries for the function variables. Must be of same length as the variables vector of the function.
   }
   \item{control}{
   List with optional further arguments to modify the optimization specifically to the loss function:
@@ -37,13 +37,13 @@ optim_sa(fun, start, maximization = FALSE, trace = FALSE,
         Function that determines the variation of the function variables for the next iteration. The variation function is allowed to depend on the vector of variables of the current iteration, the vector of random factors \code{rf} and the temperature of the current iteration. Default is a uniform distributed random number with relative range \code{rf}.
       }
       \item{\code{rf}}{
-        Numeric vector with random factors. The random factors determine the range of the random number in the variation function \code{vf} relative to the dimension of the function variables. The \code{rf} can be stated seperately for each variable. Default is a vector with ones. If \code{dyn_rf} is enabled, the \code{rf} change dynamically over time.
+        Numeric vector. Random factor vector that determines the variation of the random number of \code{vf} in relation to the dimension of the function variables for the following iteration. Default is 1. If \code{dyn_rf} is enabled, the \code{rf} change dynamically over time.
       }
       \item{\code{dyn_rf}}{
-        Logical. \code{rf} change dynamically over time to ensure increasing precision with increasing number of iterations. Default is TRUE, see \code{details}.
+        Logical. \code{rf} change dynamically over time to ensure increasing precision with increasing number of iterations. Default is TRUE, see 'details'.
       }
       \item{\code{t0}}{
-        Numeric. Initial temperature. Default is 1000, see \code{details}.
+        Numeric. Initial temperature. Default is 1000.
       }
       \item{\code{nlimit}}{
         Integer. Maximum number of iterations of the inner loop. Default is 100.
@@ -52,7 +52,7 @@ optim_sa(fun, start, maximization = FALSE, trace = FALSE,
         Numeric. Temperature reduction in the outer loop. Default is 0.6.
       }
       \item{\code{k}}{
-        Numeric. Constant for the Metropolis function. Default is 1, see \code{details}.
+        Numeric. Constant for the Metropolis function. Default is 1.
       }
       \item{\code{t_min}}{
         Numeric. Temperature where outer loop stops. Default is 0.1.
@@ -71,14 +71,14 @@ optim_sa(fun, start, maximization = FALSE, trace = FALSE,
 
 }
 \details{
-Simulated Annealing is an optimization algorithm for solving complex functions that may have several optima. The method is composed of a random and a systematic component. Basically, it randomly modifies the variables combination \code{n_limit} times to compare their response values. Depending on the temperature and the constant \code{k}, there is also a likelihood of choosing variables combinations with worse response. There is thus a time-decreasing likelihood of leaving local optima. The Simulated Annealing Optimization method is therefore advantageous for multimodal functions. Undefined response values (NA or NaN) are allowed as well. This can be useful for loss functions with variables restrictions. The high number of parameters allows a very flexible parameterization. \code{optim_sa} is able to solve mathematical formulas as well as complex rule sets. Simulated Annealing is not efficient for unimodal functions.
+Simulated Annealing is an optimization algorithm for solving complex functions that may have several optima. The method is composed of a random and a systematic component. Basically, it randomly modifies the variables combination \code{n_limit} times to compare their response values. Depending on the temperature and the constant \code{k}, there is also a likelihood of choosing variables combinations with worse response. There is thus a time-decreasing likelihood of leaving local opima. The Simulated Annealing Optimization method is therefore advantageous for multimodal functions. Undefined response values (NA) are allowed as well. This can be useful for loss functions with variables restrictions. The high number of parameters allows a very flexible parameterization. \code{optim_sa} is able to solve mathematical formulas as well as complex rule sets.
 
-The performance therefore highly depends on the settings. It is indispensable to parameterize the algorithm carefully. The control list is pre-parameterized for loss functions of medium complexity. To improve the performance, the settings should be changed when solving relatively simple functions (e. g. three dimensional multimodal functions). For complex functions the settings should be changed to improve the accuracy. Most important parameters are \code{nlimit}, \code{r} and \code{t0}.
+The performance therefore highly depends on the settings. It is indispensable to parameterize the algorithm carefully. The control list is pre-parameterized for loss functions of medium complexity. To improve the performance, the settings should be changed when solving relatively simple functions (e. g. three dimensional multimodal functions). For complex functions the settings should be changed to improve the accuracy. Most important parameters are \code{nlimit},  \code{r} and \code{t0}.
 
 The dynamic \code{rf} adjustment depends on the number of loss function calls which are out of the variables boundaries as well as the temperature of the current iteration. The obligatory decreasing \code{rf} ensures a relatively wide search grid at the beginning of the optimization process that shrinks over time. It thus automatically adjusts for the trade-off between range of the search grid and accuracy. See Pronzato (1984) for more details. It is sometimes useful to disable the dynamic \code{rf} changing when the most performant \code{rf} are known. As \code{dyn_rf} usually improves the performance as well as the accuracy, the default is TRUE.
 }
 \value{
-The output is a optim_nmsa object with following entries:
+The output is a nmsa_optim list object with following entries:
   \describe{
     \item{\code{par}}{
       Function variables after optimization.
@@ -102,7 +102,7 @@ The output is a optim_nmsa object with following entries:
       The upper boundaries of the function variables.
     }
     \item{\code{control}}{
-      Control arguments, see \code{details}.
+      Control arguments, see 'details'.
     }
 
 

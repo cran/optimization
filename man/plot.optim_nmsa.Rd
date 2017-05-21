@@ -5,7 +5,7 @@
 Plot an optim_nmsa Object
 }
 \description{
-Creates convergence or contour plots for visual inspection of the optimization result. Note that \code{trace} must be activated for this function. \cr
+Creates convergence or contour plots for visual inspection of the optimization result. Note that 'trace' must be activated for this function. \cr
 In case of a bivariate optimization, the 'contour' plot gives an overview of the parameter development over time in the entire state space. This is useful for the evaluation of the algorithm settings and therefore helps improving the performance. The development of the response can be visualized via the 'convergence' plot.
 }
 \usage{
@@ -13,10 +13,10 @@ In case of a bivariate optimization, the 'contour' plot gives an overview of the
 }
 \arguments{
   \item{x}{
-  Object of type 'optim_nmsa' to be plotted.
+  Object of type 'optim_nmsa' to be plotted. The 'trace' entry must not be empty.
   }
   \item{type}{
-  Character string which determines the plot type. Either 'convergence' or 'contour' is allowed.
+  Character string which determines the plot type. Either 'convergence' or 'contour' is possible.
   }
   \item{lower}{
   Vector containing the lower limits of the variables in the plot. Only useful for 'contour' plots.
